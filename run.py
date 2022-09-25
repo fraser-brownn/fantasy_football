@@ -1,4 +1,4 @@
-from data_ingestion import *
+from ingestion.data_ingestion import *
 from best_squad.best_squad import *
 
 query = '''
@@ -30,9 +30,10 @@ SELECT
         ,squad_select
         ,squad_min_play
         ,squad_max_play
+        ,T1.date_inserted
         ,cast(cast(total_points as decimal(20,2))/cast(now_cost as decimal(20,2)) as decimal(10,2)) 
             AS points_per_cost
-        ,T1.date_inserted
+        
  
     FROM fantasy_football t1
 
@@ -40,16 +41,18 @@ SELECT
         ON t1.element_type = t2.id_
 
     where  t1.date_inserted = (SELECT max(date_inserted) from fantasy_football)
+
+    group by 1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27
         
 
 '''
 
-if __name__ == '___main__':
-    raw_data = execute_query(query)
+#if __name__ == '___main__':
+raw_data = execute_query(query)
 
-    linear_optimisation = BestPlayers(raw_data)
+linear_optimisation = BestPlayers(raw_data)
 
-    df = linear_optimisation.return_team()
-    print(df)
+df = linear_optimisation.return_team()
+print(df)
 
 ##checking git push
