@@ -14,6 +14,6 @@ def execute_query(query):
     data = cur.fetchall()
     cur.close()
     conn.close()
-    df = pd.DataFrame(data)
+    df = pd.DataFrame(data).drop_duplicates()
     df.columns = column_names
     return df

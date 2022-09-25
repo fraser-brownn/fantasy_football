@@ -4,4 +4,4 @@
 
 psql postgres -h 127.0.0.1 -d fantasy_football -f sql/create_elements_table.sql
 
-poetry run python insert_dataframes.py
+poetry run python ingestion/insert_dataframes.py
