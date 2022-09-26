@@ -47,12 +47,11 @@ SELECT
 
 '''
 
-#if __name__ == '___main__':
 raw_data = execute_query(query)
 
 linear_optimisation = BestPlayers(raw_data)
 
-df = linear_optimisation.return_team()
-print(df)
+players = linear_optimisation.return_team()[['web_name']] ## return list of players in best squad
 
-##checking git push
+print(players)
+
